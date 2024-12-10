@@ -77,6 +77,7 @@ h1, h2, h3 {
 }
 
 /* Modal Styles */
+/* Modal Styles */
 .modal {
     display: none;
     position: fixed;
@@ -88,6 +89,8 @@ h1, h2, h3 {
     z-index: 1000;
     justify-content: center;
     align-items: center;
+    opacity: 0; /* Start invisible */
+    animation: fadeInModal 0.5s ease forwards; /* Fade-in effect */
 }
 
 .modal-content {
@@ -97,6 +100,8 @@ h1, h2, h3 {
     text-align: center;
     position: relative;
     max-width: 90%;
+    transform: scale(0); /* Start small */
+    animation: popIn 0.5s ease-out forwards; /* Pop-in effect */
 }
 
 .modal-content img {
@@ -113,6 +118,29 @@ h1, h2, h3 {
     color: #666;
 }
 
+/* Fade-in animation for modal background */
+@keyframes fadeInModal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Pop-in animation for modal content */
+@keyframes popIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Close button styling */
 .close {
     position: absolute;
     top: 10px;
