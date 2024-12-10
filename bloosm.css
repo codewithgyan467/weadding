@@ -1,4 +1,3 @@
-
 /* Global Styles */
 * {
     margin: 0;
@@ -43,6 +42,8 @@ h1, h2, h3 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 300px;
     text-align: center;
+    opacity: 0;
+    animation: slideInFromLeft 1s ease-in-out forwards;
 }
 
 .card:hover {
@@ -73,14 +74,6 @@ h1, h2, h3 {
     background: #f7cac9;
     color: white;
     margin-top: 2rem;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .card-container {
-        flex-direction: column;
-        align-items: center;
-    }
 }
 
 /* Modal Styles */
@@ -127,90 +120,52 @@ h1, h2, h3 {
     font-size: 20px;
     cursor: pointer;
 }
-/* Animation Styles */
-@keyframes slideInFromLeft {
-    from {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
 
-/* Apply animation to cards */
-.card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 300px;
-    text-align: center;
-
-    /* Animation properties */
-    opacity: 0; /* Ensure initial opacity is 0 */
-    animation: slideInFromLeft 1s ease-in-out forwards;
-    animation-delay: var(--animation-delay); /* Use delay for staggering */
-}
-
-/* Stagger animation delays for each card */
-.card:nth-child(1) {
-    --animation-delay: 0.2s;
-}
-
-.card:nth-child(2) {
-    --animation-delay: 0.4s;
-}
-
-.card:nth-child(3) {
-    --animation-delay: 0.6s;
-}
-
-.card:nth-child(4) {
-    --animation-delay: 0.8s;
-}
-
-.card:nth-child(5) {
-    --animation-delay: 1s;
-}
-
-.card:nth-child(6) {
-    --animation-delay: 1.2s;
-}
-
-.card:nth-child(7) {
-    --animation-delay: 1.4s;
-}
-
-.card:nth-child(8) {
-    --animation-delay: 1.6s;
-}
 /* Profile Card */
-.profile-card {
+.profile-container {
+    position: relative;
+}
+
+.profile-icon {
     position: absolute;
-    top: 70px;
-    right: 20px; /* Align slightly to the right for better positioning */
-    background: rgb(250, 250, 250);
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    display: none; /* Initially hidden */
-    flex-direction: column;
+    top: -100px;
+    right: 20px;
+    width: 60px; /* Define width */
+    height: 60px; /* Define height */
+    background: linear-gradient(to right, #f7cac9, #92a8d1);
+    border-radius: 50%; /* Makes the icon a circle */
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
     align-items: center;
-    text-align: center;
+}
+
+
+.profile-card {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 0;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    width: 100px;
+    padding: 5px;
     z-index: 1000;
-    animation: fadeIn 0.4s ease forwards;
-    width: 300px; /* Default width for larger screens */
 }
 
-/* Show the profile card */
 .profile-card.show {
-    display: flex; /* Explicitly set to flex when visible */
+    display: block;
 }
 
-/* Profile Picture Styling */
+.profile-info {
+    text-align: center;
+}
+
 .profile-picture {
     width: 100px;
     height: 100px;
@@ -218,11 +173,6 @@ h1, h2, h3 {
     margin-bottom: 15px;
     border: 4px solid #d24745;
     object-fit: cover;
-}
-
-/* Profile Info */
-.profile-info {
-    margin-bottom: 20px;
 }
 
 .profile-info h3 {
@@ -236,31 +186,34 @@ h1, h2, h3 {
     color: #666;
 }
 
-/* Social Links */
 .social-links {
     display: flex;
-    justify-content: center;
-    gap: 15px;
+    justify-content: space-around;
     margin-top: 10px;
 }
 
 .social-icon {
-    color: #f7cac9;
-    font-size: 24px;
+    color: #e6a5a5;
+    font-size: 20px;
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .social-icon:hover {
+    color: #f7cac9;
     transform: scale(1.2);
-    color: #92a8d1;
 }
 
-/* Responsive Design for Mobile */
+/* Responsive Design */
 @media (max-width: 768px) {
+    .card-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .profile-card {
-        right: 10px; /* Adjust alignment for smaller screens */
-        width: 90%; /* Take most of the screen width */
-        max-width: 350px; /* Limit maximum width */
+        right: 10px;
+        width: 90%;
+        max-width: 350px;
     }
 
     .profile-picture {
@@ -282,6 +235,17 @@ h1, h2, h3 {
 }
 
 /* Animation */
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 @keyframes fadeIn {
     from {
         transform: translateY(-20px);
@@ -292,26 +256,36 @@ h1, h2, h3 {
         opacity: 1;
     }
 }
-/* Profile Button */
-.profile-icon {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: linear-gradient(to right, #f7cac9, #d8716f);
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, background 0.3s ease;
-    z-index: 1500;
+
+/* Stagger animation delays for each card */
+.card:nth-child(1) {
+    animation-delay: 0.2s;
 }
 
-.profile-icon:hover {
-    transform: scale(1.1);
-    background: linear-gradient(to right, #d24745, #f7cac9);
+.card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.card:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.card:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+.card:nth-child(5) {
+    animation-delay: 1s;
+}
+
+.card:nth-child(6) {
+    animation-delay: 1.2s;
+}
+
+.card:nth-child(7) {
+    animation-delay: 1.4s;
+}
+
+.card:nth-child(8) {
+    animation-delay: 1.6s;
 }
