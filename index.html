@@ -10,10 +10,36 @@
 </head>
 <body>
     <header class="header">
+   
         <h1>Bloosm Event Decorations</h1>
-        <p>Turning your dream wedding into reality</p>
+        <p>Turning your dream wedding into reality</p>     <div class="profile-container">
+            <div class="profile-icon" id="profile-icon">
+                <i class="ri-user-3-fill"></i>
+            </div>
+            <div class="profile-card" id="profile-card">
+                <div class="profile-info">
+                    <img src="18.jpg" alt="Prahlad Gogoi" class="profile-picture">
+                    <h3>Prahlad Gogoi</h3>
+                    <p>Event Decoration Specialist</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/gogoiprahlad_" target="https://www.instagram.com/gogoiprahlad_" class="social-icon">
+                        <i class="ri-instagram-fill"></i>
+                    </a>
+                    <a href="https://facebook.com" target="_blank" class="social-icon">
+                        <i class="ri-facebook-circle-fill"></i>
+                    </a>
+                    <a href="https://wa.me/1234567890" target="_blank" class="social-icon">
+                        <i class="ri-whatsapp-fill"></i>
+                    </a>
+                    <a href="mailto:prahlad@example.com" class="social-icon">
+                        <i class="ri-mail-fill"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
     </header>
-
+    
     <main>
         <section class="pricing">
             <h2 style="text-align: center; font-size: 2rem; color: #f7cac9; font-weight: bold; margin-bottom: 2rem; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);">
@@ -90,6 +116,23 @@
                 modal.style.display = 'none';
             }
         };
+
+        const profileIcon = document.getElementById('profile-icon');
+const profileCard = document.getElementById('profile-card');
+
+// Toggle the visibility of the profile card
+profileIcon.addEventListener('click', (event) => {
+    event.stopPropagation(); // Prevent click event from propagating to the window
+    profileCard.classList.toggle('show'); // Use the 'show' class to toggle visibility
+});
+
+// Close the profile card when clicking outside
+window.addEventListener('click', (event) => {
+    if (!profileCard.contains(event.target) && event.target !== profileIcon) {
+        profileCard.classList.remove('show');
+    }
+});
+
     </script>
 </body>
 </html>
