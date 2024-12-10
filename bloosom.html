@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Decorations</title>
+    <link rel="stylesheet" href="bloosm.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+   
+</head>
+<body>
+    <header class="header">
+        <h1>Bloosm Event Decorations</h1>
+        <p>Turning your dream wedding into reality</p>
+    </header>
+
+    <main>
+        <section class="pricing">
+            <h2 style="text-align: center; font-size: 2rem; color: #f7cac9; font-weight: bold; margin-bottom: 2rem; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);">
+                Our Packages
+            </h2>
+            
+            <div class="card-container" id="card-container"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 | Designed by Gyandeep with love</p>
+    </footer>
+
+    <!-- Modal for showing detailed information -->
+    <div class="modal" id="modal">
+        <div class="modal-content" id="modal-content">
+            <span class="close" id="close-modal">&times;</span>
+            <img src="" alt="" id="modal-image">
+            <h3 id="modal-title"></h3>
+            <p id="modal-price"></p>
+        </div>
+    </div>
+
+    <script>
+        // Array of wedding packages
+        const weddingPackages = [
+            { title: "Wedding Sofa", price: "₹50,000", image: "1.jpg" },
+            { title: "Wedding Sofa", price: "₹70,000", image: "2.jpg" },
+            { title: "Wedding Design", price: "₹1,00,000", image: "3.jpg" },
+            { title: "Wedding Design", price: "₹50,000", image: "4.jpg" },
+            { title: "Wedding Design", price: "₹70,000", image: "5.jpg" },
+            { title: "Wedding Design", price: "₹1,00,000", image: "6.jpg" },
+            { title: "Modern Wedding", price: "₹70,000", image: "13.jpg" },
+            { title: "Royal Wedding", price: "₹1,00,000", image: "14.jpg" },
+        ];
+
+        const cardContainer = document.getElementById('card-container');
+        const modal = document.getElementById('modal');
+        const modalContent = document.getElementById('modal-content');
+        const modalImage = document.getElementById('modal-image');
+        const modalTitle = document.getElementById('modal-title');
+        const modalPrice = document.getElementById('modal-price');
+        const closeModal = document.getElementById('close-modal');
+
+        // Generate HTML dynamically
+        weddingPackages.forEach(package => {
+            const card = `
+                <div class="card" onclick="showModal('${package.image}', '${package.title}', '${package.price}')">
+                    <img src="${package.image}" alt="${package.title}">
+                    <h3>${package.title}</h3>
+                    <p>Starting at ${package.price}</p>
+                </div>
+            `;
+            cardContainer.innerHTML += card;
+        });
+
+        // Function to display modal with package details
+        function showModal(image, title, price) {
+            modalImage.src = image;
+            modalTitle.textContent = title;
+            modalPrice.textContent = `Price: ${price}`;
+            modal.style.display = 'flex';
+        }
+
+        // Close modal when clicking the close button
+        closeModal.onclick = () => {
+            modal.style.display = 'none';
+        };
+
+        // Close modal when clicking outside the modal content
+        window.onclick = (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>
